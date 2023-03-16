@@ -9,9 +9,8 @@ module.exports = {
     },
     {
       name: 'web-app-frontend',
-      script: './frontend/build/index.js',
-      instances: 'max',
-      exec_mode: 'cluster',
+      script: 'npm run start',
+      instances: '1',
       autorestart: true,
       env_production: {
         NODE_ENV: 'production',
