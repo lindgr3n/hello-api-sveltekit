@@ -9,7 +9,7 @@ module.exports = {
     },
     {
       name: 'web-app-frontend',
-      script: 'npm run start',
+      script: './frontend/build/index.js',
       instances: '1',
       autorestart: true,
       env_production: {
