@@ -13,6 +13,10 @@ module.exports = {
       instances: 'max',
       exec_mode: 'cluster',
       autorestart: true,
+      env_production: {
+        NODE_ENV: 'production',
+        PORT: 3000, // port the app will be launched on
+      },
     },
   ],
 }
