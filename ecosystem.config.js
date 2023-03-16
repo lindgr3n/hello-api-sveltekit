@@ -9,12 +9,14 @@ module.exports = {
     },
     {
       name: 'web-app-frontend',
-      script: './frontend/build/index.js',
+      cwd: './frontend/build',
+      script: 'index.js',
+      exec_mode: 'fork',
       instances: '1',
       autorestart: true,
       env_production: {
         NODE_ENV: 'production',
-        PORT: 3000, // port the app will be launched on
+        PORT: 3000,
       },
     },
   ],
