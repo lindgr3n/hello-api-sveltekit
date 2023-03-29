@@ -10,7 +10,7 @@ module.exports = {
     {
       name: 'web-app-frontend',
       cwd: './frontend/build',
-      script: 'index.js',
+      script: 'node build',
       exec_mode: 'fork',
       instances: '1',
       autorestart: true,
@@ -18,6 +18,7 @@ module.exports = {
       env_production: {
         NODE_ENV: 'production',
         PORT: 3000,
+        ORIGIN: 'http://hello-api-sveltekit',
       },
     },
   ],
