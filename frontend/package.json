@@ -30,6 +30,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltejs/adapter-node": "^1.2.2"
+		"@sveltejs/adapter-node": "^1.2.2",
+		"dotenv": "^16.0.3"
 	}
 }

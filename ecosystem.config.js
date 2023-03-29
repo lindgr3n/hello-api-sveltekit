@@ -14,6 +14,7 @@ module.exports = {
       exec_mode: 'fork',
       instances: '1',
       autorestart: true,
+      node_args: '-r dotenv/config',
       env_production: {
         NODE_ENV: 'production',
         PORT: 3000,
