@@ -9,8 +9,8 @@ module.exports = {
     },
     {
       name: 'web-app-frontend',
-      cwd: './frontend/build',
-      script: 'node build',
+      cwd: './frontend/',
+      script: 'ORIGIN=http://hello-api-sveltekit node build/index.js',
       exec_mode: 'fork',
       instances: '1',
       autorestart: true,
