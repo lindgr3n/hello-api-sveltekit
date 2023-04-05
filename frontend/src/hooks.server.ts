@@ -12,6 +12,13 @@ export const handleFetch = (({ request, fetch, event }) => {
 
 	// request.headers.set('cookie', event.cookies);
 	// }
+	if (request.url.startsWith('http://hello-api-sveltekit/')) {
+		// clone the original request, but change the URL
+		request = new Request(
+			request.url.replace('http://hello-api-sveltekit/', 'http://localhost:3333/'),
+			request
+		);
+	}
 
 	return fetch(request);
 }) satisfies HandleFetch;
