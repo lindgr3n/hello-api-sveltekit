@@ -9,17 +9,22 @@ export const load: PageServerLoad = async function () {
 
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {
+		console.log('LOGIN ACTION');
+
 		const formData = await request.formData();
 		const formvalues = new FormData();
 		formvalues.set('email', formData.get('email') ?? '');
 		formvalues.set('password', formData.get('password') ?? '');
 
+		console.log('TO SEND', formvalues);
 		// Need to pass the cookie from client to server (In hooks file?)
 		const response = await fetch('http://hello-api-sveltekit/login', {
 			method: 'POST',
 			body: formvalues
 		});
 		const data = await response.json();
+		console.log('RESPONSE FROM LOGIN', data);
+
 		const cookiesToSet = response.headers.get('set-cookie');
 		if (cookiesToSet) {
 			const c = setCookie.parse(setCookie.splitCookiesString(cookiesToSet));
