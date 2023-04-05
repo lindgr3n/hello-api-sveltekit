@@ -15,19 +15,21 @@ export const actions: Actions = {
 		formvalues.set('password', formData.get('password') ?? '');
 
 		// Need to pass the cookie from client to server (In hooks file?)
-		const response = await fetch('http://localhost:3333/login', {
+		const response = await fetch('http://hello-api-sveltekit/login', {
 			method: 'POST',
 			body: formvalues
 		});
 		const data = await response.json();
 		const cookiesToSet = response.headers.get('set-cookie');
-		const c = setCookie.parse(setCookie.splitCookiesString(cookiesToSet));
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		c.forEach((c: any) => {
-			const { name, value, ...rest } = c;
-			cookies.set(name, value, rest);
-		});
-		console.log('RES', c);
+		if (cookiesToSet) {
+			const c = setCookie.parse(setCookie.splitCookiesString(cookiesToSet));
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			c.forEach((c: any) => {
+				const { name, value, ...rest } = c;
+				cookies.set(name, value, Object.assign({ ...rest }, { secure: false }));
+			});
+			console.log('RES', c);
+		}
 		console.log('RESPONSE', data);
 
 		// Need to validate response and return correct error message
