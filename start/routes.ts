@@ -42,7 +42,7 @@ Route.post('/login', async ({ request, auth }) => {
   const user = await auth.use('web').attempt(email, password)
   console.log('USER IN ADONIS', user)
 
-  return { user: User.find(user.id) }
+  return { user: await User.find(user.id) }
 })
 
 Route.post('/register', async ({ request, session, response }) => {
