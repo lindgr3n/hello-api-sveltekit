@@ -18,8 +18,8 @@ export const actions: Actions = {
 
 		console.log('TO SEND', formvalues);
 		// Need to pass the cookie from client to server (In hooks file?)
-		const response = await fetch('http://hello-api-sveltekit/login', {
-			// const response = await fetch('http://localhost:3333/login', {
+		// const response = await fetch('http://hello-api-sveltekit/login', {
+		const response = await fetch('http://localhost:3333/login', {
 			method: 'POST',
 
 			body: formvalues
@@ -38,9 +38,9 @@ export const actions: Actions = {
 				const { name, value, ...rest } = c;
 				cookies.set(name, value, Object.assign({ ...rest }, { secure: false }));
 			});
-			console.log('RES', c);
+			// console.log('RES', c);
 		}
-		console.log('RESPONSE', data);
+		// console.log('RESPONSE', data);
 
 		// Need to validate response and return correct error message
 

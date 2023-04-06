@@ -29,6 +29,7 @@ export const handle = (async ({ event, resolve }) => {
 	// if (event.url.pathname.startsWith('/custom')) {
 	// 	return new Response('custom response');
 	// }
+	console.log('INSIDE HANDLE');
 
 	const response = await resolve(event);
 	return response;
