@@ -27,8 +27,6 @@ Route.get('/', async () => {
 
 Route.get('/users', async () => {
   const users = await User.all()
-  console.log('YES INSIDE ROUTE', users)
-
   return { users }
 }).middleware('auth')
 

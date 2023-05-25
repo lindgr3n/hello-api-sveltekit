@@ -9,27 +9,18 @@ export const load: PageServerLoad = async function () {
 
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {
-		console.log('LOGIN ACTION');
-
 		const formData = await request.formData();
-		const formvalues = new FormData();
-		formvalues.set('email', formData.get('email') ?? '');
-		formvalues.set('password', formData.get('password') ?? '');
 
-		console.log('TO SEND', formvalues);
-		// Need to pass the cookie from client to server (In hooks file?)
-		// const response = await fetch('http://hello-api-sveltekit/login', {
+		// TODO: verify formdata input
+		// TODO: move url to env file
 		const response = await fetch('http://localhost:3333/login', {
 			method: 'POST',
-
-			body: formvalues
+			body: formData
 		});
-		// console.log('RESPONSE FROM LOGIN', await response.text());
-		console.log('RESPONSE BACK');
 
 		const data = await response.json();
-		console.log('DATA FROM LOGIN', data);
 
+		// Need to pass along the set-cookie header so the browser sets it
 		const cookiesToSet = response.headers.get('set-cookie');
 		if (cookiesToSet) {
 			const c = setCookie.parse(setCookie.splitCookiesString(cookiesToSet));
@@ -38,16 +29,13 @@ export const actions: Actions = {
 				const { name, value, ...rest } = c;
 				cookies.set(name, value, Object.assign({ ...rest }, { secure: false }));
 			});
-			// console.log('RES', c);
 		}
-		// console.log('RESPONSE', data);
-
 		// Need to validate response and return correct error message
-
 		// Need to test this, do we need to validate input here? If we send the request directly to the adonis it will return error that we just return.
 		// Still could need correct validation for what field that fails, or could we make a package that parses it?.
 		// Just send the response in and the package will throw error if the validation have failed.
 
+		// TODO: redirect to /
 		return { user: data.user };
 	}
 };
