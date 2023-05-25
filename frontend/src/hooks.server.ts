@@ -8,13 +8,13 @@ export const handleFetch = (({ request, fetch, event }) => {
 	// );
 	// request.url.replace('https://api.yourapp.com/', 'http://localhost:9999/'),
 	// request.headers.set('cookie', event.request.headers.get('cookie'));
-	console.log('HANDLE FETCH', event.cookies);
-	// const cookieString = event.cookies
-	// 	.getAll()
-	// 	.map((c) => `${c.name}=${c.value}`)
-	// 	.join('; ');
+	//console.log('HANDLE FETCH', event.cookies);
+	const cookieString = event.cookies
+		.getAll()
+		.map((c) => `${c.name}=${c.value}`)
+		.join('; ');
 	//console.log('STORED COOKIES INSIDE HOOKS', cookieString);
-	//request.headers.set('cookie', cookieString);
+	request.headers.set('cookie', cookieString);
 	//request.credentials = 'include';
 	// request.headers.set('cookie', event.cookies);
 	// }
