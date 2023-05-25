@@ -9,9 +9,17 @@ export const handleFetch = (({ request, fetch, event }) => {
 	// request.url.replace('https://api.yourapp.com/', 'http://localhost:9999/'),
 	// request.headers.set('cookie', event.request.headers.get('cookie'));
 	console.log('HANDLE FETCH', event.cookies);
-
+	// const cookieString = event.cookies
+	// 	.getAll()
+	// 	.map((c) => `${c.name}=${c.value}`)
+	// 	.join('; ');
+	//console.log('STORED COOKIES INSIDE HOOKS', cookieString);
+	//request.headers.set('cookie', cookieString);
+	//request.credentials = 'include';
 	// request.headers.set('cookie', event.cookies);
 	// }
+
+	// Because we are on the same server we can just call the localhost directly without going a roundtrip
 	if (request.url.startsWith('http://hello-api-sveltekit/')) {
 		// clone the original request, but change the URL
 		request = new Request(
@@ -19,7 +27,7 @@ export const handleFetch = (({ request, fetch, event }) => {
 			request
 		);
 	}
-
+	console.log('HANDLE FECH COOKIES', request.headers.get('cookie'));
 	return fetch(request);
 }) satisfies HandleFetch;
 
